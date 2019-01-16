@@ -34,7 +34,7 @@ def query_result_graph_api(request):
                 "progress": result.progress,
             }),
             content_type='application/json',
-            status=204
+            status=202
         )
 
     result.loadResult()

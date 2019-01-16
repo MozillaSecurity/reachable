@@ -1,0 +1,69 @@
+html {
+  color: #333;
+  margin: 0px;
+  padding: 0px;
+  /* for sticky footer */
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+}
+
+/* hyperlink behavior */
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* panels for each page */
+
+.panel {
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+/* database tables */
+
+.table-db {
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+.table-db th {
+  background: #eee;
+}
+
+/* sticky footer */
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 80px;
+  padding: 10px;
+  border-top: 1px solid #dfdfdf;
+  background-color: #f7f7f7;
+}
+
+/* remove / improve */
+
+.clear {
+  clear: both;
+}
+
+.hidden {
+  display: none;
+}
+
+div.field {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

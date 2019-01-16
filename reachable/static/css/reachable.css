@@ -1,0 +1,94 @@
+/*
+ * Reachable Query Interface
+ */
+
+.sbs {
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  min-height: 75vh;
+  padding: 0px;
+}
+
+.sbsl {
+  border-left: none;
+}
+
+.infotext {
+  margin: 15px;
+  font: 16px sans-serif;
+}
+
+.console {
+  font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace;
+  font-size: 16px;
+}
+
+.blinking-cursor {
+  font-weight: 100;
+  color: #2E3D48;
+  animation: 1s blink step-end infinite;
+}
+
+@keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: black;
+  }
+}
+
+/*
+ * D3 Graph
+ */
+
+text {
+  font: 12px sans-serif;
+}
+
+tspan:last-child {
+  font-size: 10px;
+  fill-opacity: 0.8;
+}
+
+.node {}
+.link { stroke: #999; stroke-opacity: .6; stroke-width: 1px; }
+
+/*
+ * Spinner
+ */
+
+.loader,
+.loader:after {
+  border-radius: 50%;
+  width: 10em;
+  height: 10em;
+}
+.loader {
+  margin: 60px auto;
+  font-size: 10px;
+  position: relative;
+  border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-left: 1.1em solid #000;
+  transform: translateZ(0);
+  animation: load8 1.1s infinite linear;
+}
+
+.loader-msg {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  font-size: 16px;
+  padding: 3px;
+}
+
+@keyframes load8 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

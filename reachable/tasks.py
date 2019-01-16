@@ -334,7 +334,7 @@ def fetch_and_unpack_latest_data():
         dbobj = MozsearchIndexFile()
         dbobj.revision = rev
         dbobj.os = index_os
-        dbobj.file.name = os.path.join("data", targetZipBasename + ".zip")
+        dbobj.file.name = storage_path + ".zip"
         dbobj.save()
 
         # TODO: This uses unzip, we might want to use Python instead. However, the archive

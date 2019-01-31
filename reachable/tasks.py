@@ -229,7 +229,7 @@ class DeadCodeAnalysis():
         return (defs, uses, macro_table)
 
     def find_uses(self, file):
-        (_, uses, _) = self.get_defs_uses(file)
+        (defs, uses, _) = self.get_defs_uses(file)
 
         if not uses:
             return
@@ -240,7 +240,12 @@ class DeadCodeAnalysis():
             filedefs = self.target_defs[tfile]
 
             for use in uses:
-                if use in self.macro_table:
+                if use in defs:
+                    # Ignore uses of symbols that are (also) defined in the same file.
+                    # This can e.g. be types locally defined in an anonymous namespace
+                    # where the Searchfox analysis believes they are the same.
+                    pass
+                elif use in self.macro_table:
                     if self.macro_table[use] in filedefs:
                         relations.add((file, tfile))
                 elif use in filedefs:

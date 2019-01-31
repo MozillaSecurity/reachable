@@ -340,10 +340,20 @@ def fetch_and_unpack_latest_data():
         dbobj.revision = rev
         dbobj.os = index_os
         dbobj.file.name = storage_path + ".zip"
-        dbobj.save()
 
         # TODO: This uses unzip, we might want to use Python instead. However, the archive
         # is a highly-compressed 300 MB file, that needs to be decompressed efficiently.
         subprocess.check_call(["unzip", storage_path + ".zip"], cwd=storage_path)
+
+        for (path, dirs, files) in os.walk(storage_path):
+            for file in files:
+                fp_file = os.path.join(path, file)
+                with open(fp_file, 'r') as fd:
+                    lines = fd.readlines()
+                lines = [x for x in lines if '"syntax"' in x]
+                with open(fp_file, 'w') as fd:
+                    fd.writelines(lines)
+
+        dbobj.save()
 
     return

@@ -197,7 +197,7 @@ class DeadCodeAnalysis():
             while line:
                 try:
                     data = json.loads(line)
-                    if "syntax" in data and "sym" in data and ("function" in data["syntax"] or "constructor" in data["syntax"] or "enum" in data["syntax"] or "macro" in data["syntax"] or "variable" in data["syntax"]):
+                    if "syntax" in data and "sym" in data and ("function" in data["syntax"] or "constructor" in data["syntax"] or "enum" in data["syntax"] or "macro" in data["syntax"] or "variable" in data["syntax"] or "type" in data["syntax"]):
                         syms = data["sym"].split(",")
                         if "def" in data["syntax"]:
                             for sym in syms:

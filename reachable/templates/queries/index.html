@@ -147,7 +147,7 @@ let URLS = {
 
 let pmanager = new HashParamManager()
 
-let covmanager = new Vue({
+let reachable = new Vue({
   el: '#main',
   data: {
     csrftoken: "",
@@ -192,6 +192,12 @@ let covmanager = new Vue({
   },
   created: function () {
     this.csrftoken = getCSRFToken()
+    this.result_id = pmanager.get_value('rid', null)
+
+    if (this.result_id != null) {
+      return;
+    }
+
     this.fetch_msi()
   },
   computed: {
@@ -313,7 +319,8 @@ let covmanager = new Vue({
         if(json['count'] > 0) {
           // There is a result cached, directly load it
           let results = json["results"]
-          self.result_id = results[results.length - 1].id
+          pmanager.update_value('rid', results[results.length - 1].id)
+          pmanager.update_hash()
         } else {
           fetch(URLS.qapi + "?query=" + qquery, {
             method: 'GET',
@@ -402,7 +409,8 @@ let covmanager = new Vue({
         sweetAlert('Oops', E_SERVER_ERROR, 'error')
       })
       .then(json => {
-        self.result_id = json["newid"]
+        pmanager.update_value('rid', json["newid"])
+        pmanager.update_hash()
       })
     },
     draw: function() {
@@ -544,6 +552,12 @@ let covmanager = new Vue({
 // This updates our path variable in the Vue whenever the hash changes, which again triggers a reload of the data.
 window.onhashchange = function() {
   pmanager.update_state()
+
+  let new_rid = pmanager.get_value('rid', '')
+  if (reachable.result_id != new_rid) {
+    // Updating the result id will also update the view accordingly
+    reachable.result_id = new_rid
+  }
 }
 </script>
 

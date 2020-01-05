@@ -300,8 +300,8 @@ def perform_analysis(pk):
 def fetch_and_unpack_latest_data():
     from reachable.models import MozsearchIndexFile  # noqa
 
-    baseUrl = "https://index.taskcluster.net/v1/task/gecko.v2.mozilla-central.latest.firefox.%s64-searchfox-debug"
-    artifactBaseUrl = "https://taskcluster-artifacts.net/%s/0/%s"
+    baseUrl = "https://firefox-ci-tc.services.mozilla.com/api/index/v1/task/gecko.v2.mozilla-central.latest.firefox.%s64-searchfox-debug"
+    artifactBaseUrl = "https://firefoxci.taskcluster-artifacts.net/%s/0/%s"
 
     for index_os in ['linux', 'win', 'macosx']:
         indexUrl = baseUrl % index_os

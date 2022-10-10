@@ -217,7 +217,8 @@ class DeadCodeAnalysis():
                                 for sym in syms:
                                     uses[sym] = 1
                         elif "decl" in data["syntax"] or "forward" in data["syntax"]:
-                            pass
+                            for sym in syms:
+                                uses[sym] = 1
                         else:
                             self.logger.error("Unknown syntax: %s %s" % (file, data["syntax"]))
                             return (None, None, None)
